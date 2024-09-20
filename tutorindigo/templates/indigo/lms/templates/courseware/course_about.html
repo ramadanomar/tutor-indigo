@@ -97,25 +97,24 @@ from openedx.core.lib.courses import course_image_url
           </h1>
 
           <%
-          # Calculate seats_left if not already provided
-          enrollment_count = CourseEnrollment.objects.num_enrolled_in_exclude_admins(course.id)
-          if course.max_student_enrollments_allowed and enrollment_count is not None:
-            seats_left = course.max_student_enrollments_allowed - enrollment_count
-          else:
-            seats_left = None
-        %>
+            enrollment_count = CourseEnrollment.objects.num_enrolled_in_exclude_admins(course.id)
+            if enrollment_count is None:
+                enrollment_count = 0
+            endif
+            # Determine the number of seats left
+            if course.max_student_enrollments_allowed:
+                seats_left = course.max_student_enrollments_allowed - enrollment_count
+            else:
+                seats_left = None
+            endif
+          %>
     
 
           <span class="org">${course.display_org_with_default}</span>
-          % if seats_left is not None and seats_left > 0:
-            <div class="seats-left">
-              Seats left: ${seats_left}
-            </div>
-          % elif seats_left == 0:
-            <div class="seats-left full">
-              Course is full
-            </div>
-          % endif
+          <div class="seats-left">
+            Seats left: ${seats_left}
+          </div>
+         
         </div>
       </div>
     
