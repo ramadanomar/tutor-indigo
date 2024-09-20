@@ -14,7 +14,7 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 
-################# Configuration
+# Configuration
 config: t.Dict[str, t.Dict[str, t.Any]] = {
     # Add here your new settings
     "defaults": {
@@ -27,11 +27,8 @@ config: t.Dict[str, t.Dict[str, t.Any]] = {
         # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[]
         "FOOTER_NAV_LINKS": [
             {"title": "About Us", "url": "/about"},
-            {"title": "Blog", "url": "/blog"},
-            {"title": "Donate", "url": "/donate"},
             {"title": "Terms of Service", "url": "/tos"},
             {"title": "Privacy Policy", "url": "/privacy"},
-            {"title": "Help", "url": "/help"},
             {"title": "Contact Us", "url": "/contact"},
         ],
     },
